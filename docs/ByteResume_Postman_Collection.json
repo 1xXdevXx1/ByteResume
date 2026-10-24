@@ -1,0 +1,262 @@
+{
+  "info": {
+    "name": "ByteResume - AI Resume Analyzer (BCSE406L NoSQL Database)",
+    "description": "Comprehensive Postman API collection for BCSE406L Review 2 viva demonstration.\nTeam: ByteResume (Devesh Singh & Vineet Kumar Mishra) - VIT Vellore",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. User Operations (CRUD)",
+      "item": [
+        {
+          "name": "Create User (CREATE)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rahul Verma\",\n  \"email\": \"rahul.verma2022@vitstudent.ac.in\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/users", "host": ["{{baseUrl}}"], "path": ["api", "users"] }
+          }
+        },
+        {
+          "name": "Get All Users (READ)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/users", "host": ["{{baseUrl}}"], "path": ["api", "users"] }
+          }
+        },
+        {
+          "name": "Get User by ID (READ)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/users/{{userId}}", "host": ["{{baseUrl}}"], "path": ["api", "users", "{{userId}}"] }
+          }
+        },
+        {
+          "name": "Update User (UPDATE)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rahul Verma Updated\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/users/{{userId}}", "host": ["{{baseUrl}}"], "path": ["api", "users", "{{userId}}"] }
+          }
+        },
+        {
+          "name": "Delete User (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/users/{{userId}}", "host": ["{{baseUrl}}"], "path": ["api", "users", "{{userId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Resume Operations (CRUD & Parsing)",
+      "item": [
+        {
+          "name": "Create Resume (Text / Upload) (CREATE)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"fileName\": \"Sample_Resume.txt\",\n  \"rawText\": \"Experienced Software Engineer skilled in Python, React, Node.js, MongoDB, Redis, Docker, and AWS. Bachelor of Technology in Computer Science from VIT Vellore. Built full-stack applications.\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/resumes", "host": ["{{baseUrl}}"], "path": ["api", "resumes"] }
+          }
+        },
+        {
+          "name": "Get All Resumes (READ)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/resumes", "host": ["{{baseUrl}}"], "path": ["api", "resumes"] }
+          }
+        },
+        {
+          "name": "Get Resume by ID (READ)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/resumes/{{resumeId}}", "host": ["{{baseUrl}}"], "path": ["api", "resumes", "{{resumeId}}"] }
+          }
+        },
+        {
+          "name": "Delete Resume (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/resumes/{{resumeId}}", "host": ["{{baseUrl}}"], "path": ["api", "resumes", "{{resumeId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Job Descriptions (CRUD)",
+      "item": [
+        {
+          "name": "Create Job Description (CREATE)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Cloud Native Full Stack Developer\",\n  \"company\": \"Stripe Technologies\",\n  \"description\": \"Seeking full stack engineers to build payment APIs and dashboard interfaces using React, Node.js, MongoDB, and Redis.\",\n  \"requiredSkills\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\", \"Redis\"],\n  \"preferredSkills\": [\"Docker\", \"AWS\", \"System Design\"]\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/jobs", "host": ["{{baseUrl}}"], "path": ["api", "jobs"] }
+          }
+        },
+        {
+          "name": "Get All Jobs (READ)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/jobs", "host": ["{{baseUrl}}"], "path": ["api", "jobs"] }
+          }
+        },
+        {
+          "name": "Get Job by ID (READ)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/jobs/{{jobId}}", "host": ["{{baseUrl}}"], "path": ["api", "jobs", "{{jobId}}"] }
+          }
+        },
+        {
+          "name": "Update Job (UPDATE)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Lead Full Stack Developer (Updated)\",\n  \"company\": \"Stripe Technologies\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/jobs/{{jobId}}", "host": ["{{baseUrl}}"], "path": ["api", "jobs", "{{jobId}}"] }
+          }
+        },
+        {
+          "name": "Delete Job (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/jobs/{{jobId}}", "host": ["{{baseUrl}}"], "path": ["api", "jobs", "{{jobId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Resume Analysis & Redis Cache",
+      "item": [
+        {
+          "name": "Analyze Resume (POST /api/analyze/:id) - Cache MISS / HIT",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/api/analyze/{{resumeId}}", "host": ["{{baseUrl}}"], "path": ["api", "analyze", "{{resumeId}}"] }
+          }
+        },
+        {
+          "name": "Get Analysis Report (GET /api/analysis/:id)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/analysis/{{resumeId}}", "host": ["{{baseUrl}}"], "path": ["api", "analysis", "{{resumeId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Job Matching & Redis Cache",
+      "item": [
+        {
+          "name": "Match Resume to Job (POST /api/match) - Cache MISS / HIT",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resumeId\": \"{{resumeId}}\",\n  \"jobDescriptionId\": \"{{jobId}}\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/match", "host": ["{{baseUrl}}"], "path": ["api", "match"] }
+          }
+        },
+        {
+          "name": "Get All Match Results (READ)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/match", "host": ["{{baseUrl}}"], "path": ["api", "match"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. MongoDB Aggregation Pipelines",
+      "item": [
+        {
+          "name": "Aggregation 1: Average ATS Score",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/stats/ats", "host": ["{{baseUrl}}"], "path": ["api", "stats", "ats"] }
+          }
+        },
+        {
+          "name": "Aggregation 2: Missing Skills Frequency",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/stats/missing-skills", "host": ["{{baseUrl}}"], "path": ["api", "stats", "missing-skills"] }
+          }
+        },
+        {
+          "name": "Aggregation 3: Job Match Statistics by Title",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/stats/job-matches", "host": ["{{baseUrl}}"], "path": ["api", "stats", "job-matches"] }
+          }
+        },
+        {
+          "name": "Aggregation 4: Activity Audit Counts",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/stats/activity", "host": ["{{baseUrl}}"], "path": ["api", "stats", "activity"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Database & Cache Verification (Viva)",
+      "item": [
+        {
+          "name": "Get MongoDB Indexes (db.collection.getIndexes())",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/db/indexes", "host": ["{{baseUrl}}"], "path": ["api", "db", "indexes"] }
+          }
+        },
+        {
+          "name": "Get MongoDB Collections & Document Counts",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/db/collections", "host": ["{{baseUrl}}"], "path": ["api", "db", "collections"] }
+          }
+        },
+        {
+          "name": "Get Redis Cache Status & Active Keys",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/db/cache-status", "host": ["{{baseUrl}}"], "path": ["api", "db", "cache-status"] }
+          }
+        },
+        {
+          "name": "Flush Redis Cache (Force Cache MISS)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/api/db/cache-clear", "host": ["{{baseUrl}}"], "path": ["api", "db", "cache-clear"] }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "userId", "value": "" },
+    { "key": "resumeId", "value": "" },
+    { "key": "jobId", "value": "" }
+  ]
+}

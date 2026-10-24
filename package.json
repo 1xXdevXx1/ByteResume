@@ -1,0 +1,19 @@
+{
+  "name": "byteresume-root",
+  "version": "1.0.0",
+  "description": "AI-Powered Resume Analyzer with Job Matching using Redis & MongoDB - BCSE406L Review 2 (VIT Vellore)",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "seed": "node database/seed.js",
+    "db:indexes": "node database/indexes.js",
+    "db:aggregations": "node database/aggregation_queries.js",
+    "start:backend": "npm --prefix backend start",
+    "start:frontend": "npm --prefix frontend run dev",
+    "start:ai": "python ai-service/app.py",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "mongoose": "^8.9.5"
+  }
+}
