@@ -6,7 +6,7 @@ const BASE_URL = 'http://localhost:5000/api';
 
 async function testSystem() {
   console.log('====================================================');
-  console.log(' RUNNING END-TO-END SYSTEM VERIFICATION (Review 2) ');
+  console.log(' RUNNING END-TO-END SYSTEM VERIFICATION (Production Architecture) ');
   console.log('====================================================\n');
 
   try {
@@ -97,14 +97,14 @@ async function testSystem() {
     console.log('\n12. Testing Full CRUD Operations on MongoDB...');
     // CREATE
     const newUser = await axios.post(`${BASE_URL}/users`, {
-      name: 'Viva Test Candidate',
-      email: `viva.test.${Date.now()}@vit.ac.in`
+      name: 'Evaluation Test Candidate',
+      email: `evaluation.test.${Date.now()}@Tech.ac.in`
     });
     console.log(`    [CREATE] User created with _id: ${newUser.data._id}`);
 
     // UPDATE
     const updatedUser = await axios.put(`${BASE_URL}/users/${newUser.data._id}`, {
-      name: 'Viva Test Candidate (Updated)'
+      name: 'Evaluation Test Candidate (Updated)'
     });
     console.log(`    [UPDATE] User updated name: "${updatedUser.data.name}"`);
 

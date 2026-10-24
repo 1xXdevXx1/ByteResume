@@ -1,18 +1,11 @@
 # AI-Powered Resume Analyzer with Job Matching using Redis & MongoDB
-**Course:** BCSE406L – NoSQL Database  
-**University:** Vellore Institute of Technology (VIT Vellore)  
-**Team:** ByteResume  
-**Team Members:**  
-1. **Devesh Singh** (Registration No: 22BCE...)  
-2. **Vineet Kumar Mishra** (Registration No: 22BCE...)  
-**Evaluation Phase:** Review 2 – Design & Implementation  
 
 ---
 
 ## 1. Introduction
 In contemporary talent acquisition, recruitment teams receive hundreds of candidate resumes for each open requisition. Manual screening creates substantial hiring bottlenecks, subjective biases, and delays in identifying top engineering talent. **ByteResume** is an enterprise-grade AI-powered resume analysis and job matching platform engineered specifically to solve this dilemma.
 
-Built for **BCSE406L – NoSQL Database**, this application utilizes **MongoDB** as its primary persistent document store and **Redis** as a high-speed caching tier to deliver real-time resume extraction, deterministic ATS scoring (0–100), automated job requirement matching, and comprehensive recruitment analytics.
+Built for **NoSQL Database Architecture**, this application utilizes **MongoDB** as its primary persistent document store and **Redis** as a high-speed caching tier to deliver real-time resume extraction, deterministic ATS scoring (0–100), automated job requirement matching, and comprehensive recruitment analytics.
 
 ---
 
@@ -30,7 +23,7 @@ Modern Applicant Tracking Systems (ATS) and job matching platforms face two crit
 - Formulate and execute complex multi-stage MongoDB aggregation pipelines (`$group`, `$sort`, `$project`, `$unwind`, `$lookup`, `$match`, `$limit`) to deliver live recruitment intelligence.
 - Implement an in-memory Redis caching tier with Time-To-Live (TTL) expiration to eliminate redundant NLP evaluations, making cache `HIT` and `MISS` behaviors visually observable.
 - Build a practical, deterministic resume analysis engine with transparent scoring (0–100) across technical skills, section completeness, soft skills, and action verbs.
-- Create an intuitive, screenshot-ready React web interface suitable for live academic demonstration during the Review 2 viva.
+- Create an intuitive, screenshot-ready React web interface suitable for live academic demonstration during the Production Architecture evaluation.
 
 ---
 
@@ -64,7 +57,7 @@ The proposed ByteResume architecture integrates:
 |      Redis Cache      |   |            MongoDB Primary DB             |
 |   In-Memory Key-Value |   |   users | resumes | jobDescriptions       |
 |  resume_analysis:<id> |   |   analysisReports | matchResults          |
-|  job_match:<id>:<id>  |   |   activityLogs                            |
+|  job_match:<id>:<id>  |   |   actiTechyLogs                            |
 +-----------------------+   +-------------------------------------------+
                     |
       Cache Miss?   | HTTP / JSON (Port 8000)
@@ -107,7 +100,7 @@ The database consists of 6 dedicated collections:
 | `jobDescriptions` | Recruiter job listings and skill requirements | `_id`, `title` |
 | `analysisReports` | ATS score evaluations and recommendations | `_id`, `resumeId`, `userId` |
 | `matchResults` | Resume-to-job matching scores and skill gaps | `_id`, `resumeId`, `jobDescriptionId` |
-| `activityLogs` | Audit trail of all candidate and recruiter actions | `_id`, `userId`, `timestamp` |
+| `actiTechyLogs` | Audit trail of all candidate and recruiter actions | `_id`, `userId`, `timestamp` |
 
 ---
 
@@ -117,8 +110,8 @@ The database consists of 6 dedicated collections:
 ```json
 {
   "_id": { "$oid": "66f1a001a1b2c3d4e5f60001" },
-  "name": "Devesh Singh",
-  "email": "devesh.singh2022@vitstudent.ac.in",
+  "name": "Candidate Profile",
+  "email": "Developer.singh2022@Techstudent.ac.in",
   "createdAt": { "$date": "2026-09-15T09:00:00.000Z" }
 }
 ```
@@ -128,11 +121,11 @@ The database consists of 6 dedicated collections:
 {
   "_id": { "$oid": "66f1a002a1b2c3d4e5f60002" },
   "userId": { "$oid": "66f1a001a1b2c3d4e5f60001" },
-  "fileName": "Devesh_Singh_Resume.pdf",
+  "fileName": "Developer_Singh_Resume.pdf",
   "fileType": "pdf",
-  "rawText": "Devesh Singh - Full Stack Engineer skilled in React, Node.js, MongoDB, Redis...",
+  "rawText": "Candidate Profile - Full Stack Engineer skilled in React, Node.js, MongoDB, Redis...",
   "skills": ["JavaScript", "TypeScript", "React", "Node.js", "MongoDB", "Redis", "Docker", "AWS"],
-  "education": ["B.Tech Computer Science, VIT Vellore (2022 - 2026)"],
+  "education": ["B.Tech Computer Science, Production Engineering (2022 - 2026)"],
   "experience": ["Full Stack Engineering Intern at TechFlow Solutions"],
   "projects": ["ByteResume - AI Resume Analyzer", "CloudCart Microservices"],
   "uploadedAt": { "$date": "2026-09-18T14:30:00.000Z" }
@@ -194,7 +187,7 @@ The database consists of 6 dedicated collections:
 }
 ```
 
-### activityLogs
+### actiTechyLogs
 ```json
 {
   "_id": { "$oid": "66f1a006a1b2c3d4e5f60006" },
@@ -216,7 +209,7 @@ ByteResume demonstrates real, persistent MongoDB CRUD operations across all enti
 - **Job Description:** `POST /api/jobs` -> `new JobDescription(...).save()`
 - **Analysis Report:** `POST /api/analyze/:resumeId` -> `new AnalysisReport(...).save()`
 - **Match Result:** `POST /api/match` -> `new MatchResult(...).save()`
-- **Activity Log:** Automated entry in `activityLogs` on every write event.
+- **ActiTechy Log:** Automated entry in `actiTechyLogs` on every write event.
 
 ### READ:
 - **All Users:** `GET /api/users`
@@ -244,7 +237,7 @@ ByteResume demonstrates real, persistent MongoDB CRUD operations across all enti
 ## 11. Indexing Strategy
 MongoDB indexes provide high-speed $O(\log N)$ query traversal. The project establishes the following indexes verified via `db.collection.getIndexes()`:
 
-| Collection | Index Key | Type / Options | Engineering Purpose (Viva Defense) |
+| Collection | Index Key | Type / Options | Engineering Purpose (Evaluation Defense) |
 | :--- | :--- | :--- | :--- |
 | `users` | `{ email: 1 }` | Unique B-tree | Enforces email uniqueness and gives $O(1)$ lookup for candidate authentication. |
 | `resumes` | `{ userId: 1 }` | Standard B-tree | Accelerates retrieval of resumes owned by a given user foreign key. |
@@ -256,7 +249,7 @@ MongoDB indexes provide high-speed $O(\log N)$ query traversal. The project esta
 | `analysisReports` | `{ userId: 1 }` | Standard B-tree | Speeds up user portfolio dashboard analytics. |
 | `analysisReports` | `{ resumeId: 1, createdAt: -1 }` | Compound B-tree | Returns the latest analysis report per resume in a single index scan. |
 | `matchResults` | `{ resumeId: 1, jobDescriptionId: 1 }` | Compound B-tree | Checks instantly whether a specific candidate-job pair has been evaluated. |
-| `activityLogs` | `{ action: 1, timestamp: -1 }` | Compound B-tree | Optimizes audit log filtering by action type sorted by recency. |
+| `actiTechyLogs` | `{ action: 1, timestamp: -1 }` | Compound B-tree | Optimizes audit log filtering by action type sorted by recency. |
 
 Run the index runner script anytime:
 ```bash
@@ -400,9 +393,9 @@ db.matchresults.aggregate([
 ])
 ```
 
-### Pipeline 6: Activity Count by Action
+### Pipeline 6: ActiTechy Count by Action
 ```javascript
-db.activitylogs.aggregate([
+db.actiTechylogs.aggregate([
   {
     $group: {
       _id: "$action",
@@ -451,7 +444,7 @@ Check Redis: redis.get("resume_analysis:<resumeId>")
                             Execute Python AI ATS evaluation
                             Persist new AnalysisReport in MongoDB
                             Write to Redis: redis.set(key, data, { EX: 3600 })
-                            Log activity to MongoDB 'activityLogs'
+                            Log actiTechy to MongoDB 'actiTechyLogs'
                             Return fresh analysis report (~100ms latency)
 ```
 
@@ -505,7 +498,7 @@ Preferred skills provide a bonus incentive (up to 10 points) capped at 100%. The
 | `GET` | `/api/stats/ats` | Average ATS aggregation | MongoDB `$group` Pipeline |
 | `GET` | `/api/stats/missing-skills` | Missing skills frequency | MongoDB `$unwind` Pipeline |
 | `GET` | `/api/stats/job-matches` | Match stats by job title | MongoDB `$lookup` Pipeline |
-| `GET` | `/api/stats/activity` | Activity audit counts | MongoDB `$group` Pipeline |
+| `GET` | `/api/stats/actiTechy` | ActiTechy audit counts | MongoDB `$group` Pipeline |
 | `GET` | `/api/db/indexes` | View all collection indexes | Calls `getIndexes()` |
 | `GET` | `/api/db/collections` | Collection document counts | MongoDB Count |
 | `POST` | `/api/db/cache-clear` | Flush Redis cache | Redis `flushAll()` |
@@ -626,15 +619,15 @@ Import `docs/ByteResume_Postman_Collection.json` into Postman and execute all re
 
 ---
 
-## Review 2 Demonstration Guide (For Viva)
+## Production Architecture Demonstration Guide (For Evaluation)
 
-Follow these exact steps during your Review 2 viva:
+Follow these exact steps during your Production Architecture evaluation:
 
 1. **DEMO 1 (Open App):** Open `http://localhost:5173` and explain the architecture (React + Node.js + MongoDB + Redis + Python Flask).
-2. **DEMO 2 & 3 (Upload & Parse Resume):** Go to "Resume Upload", choose `database/sample_data/sample_devesh_resume.pdf` or `sample_vineet_resume.docx`. Click "Upload & Parse" and show extracted skills, education, and projects.
+2. **DEMO 2 & 3 (Upload & Parse Resume):** Go to "Resume Upload", choose `database/sample_data/sample_Developer_resume.pdf` or `sample_Developer_resume.docx`. Click "Upload & Parse" and show extracted skills, education, and projects.
 3. **DEMO 4 (Run Analysis):** Navigate to "Resume Analysis". Select the candidate and click "Compute / Fetch Analysis". Show the ATS score gauge (0-100) and 4-pillar breakdown.
 4. **DEMO 5 & 6 (Job Match):** Go to "Job Match", select the candidate resume and "Full Stack Engineer (Google)". Click "Calculate Job Match" and show the match percentage, green matched skills, and red missing skills.
-5. **DEMO 7 (MongoDB Collections):** Go to "NoSQL & Viva Stats" -> "Collections & JSON Documents". Show the 6 collections and click to inspect raw JSON documents.
+5. **DEMO 7 (MongoDB Collections):** Go to "NoSQL & Evaluation Stats" -> "Collections & JSON Documents". Show the 6 collections and click to inspect raw JSON documents.
 6. **DEMO 8-11 (MongoDB CRUD):**
    - **CREATE:** Create a new candidate or job description.
    - **READ:** Show the new document in the list.
@@ -647,4 +640,4 @@ Follow these exact steps during your Review 2 viva:
 
 ---
 
-*Submitted for BCSE406L – NoSQL Database Review 2 Evaluation | VIT Vellore*
+*Submitted for NoSQL Database Architecture Production Architecture Evaluation | Production Engineering*

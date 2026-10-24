@@ -32,7 +32,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'online',
     service: 'ByteResume Backend API',
-    course: 'BCSE406L - NoSQL Database',
+    course: 'NoSQL Database Architecture',
     timestamp: new Date()
   });
 });
@@ -68,8 +68,8 @@ async function startServer() {
     app.listen(PORT, () => {
       console.log(`====================================================`);
       console.log(` ByteResume Backend running on http://localhost:${PORT}`);
-      console.log(` Course: BCSE406L - NoSQL Database (VIT Vellore)`);
-      console.log(` Team: ByteResume (Devesh Singh & Vineet Kumar Mishra)`);
+      console.log(` Course: NoSQL Database Architecture (Production Engineering)`);
+      console.log(` Team: ByteResume (Development Team)`);
       console.log(` MongoDB: Primary Document Store`);
       console.log(` Redis: Caching Layer`);
       console.log(`====================================================`);

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const AnalysisReport = require('../models/AnalysisReport');
 const MatchResult = require('../models/MatchResult');
-const ActivityLog = require('../models/ActivityLog');
+const ActiTechyLog = require('../models/ActiTechyLog');
 const Resume = require('../models/Resume');
 const JobDescription = require('../models/JobDescription');
 const redisClient = require('../services/redisClient');
@@ -182,9 +182,9 @@ exports.getJobMatchByTitleStats = async (req, res) => {
   }
 };
 
-// 6. Activity Count by Action Aggregation
+// 6. ActiTechy Count by Action Aggregation
 // Uses $group, $sort, $project
-exports.getActivityStats = async (req, res) => {
+exports.getActiTechyStats = async (req, res) => {
   try {
     const pipeline = [
       {
@@ -205,7 +205,7 @@ exports.getActivityStats = async (req, res) => {
       }
     ];
 
-    const result = await ActivityLog.aggregate(pipeline);
+    const result = await ActiTechyLog.aggregate(pipeline);
     return res.status(200).json(result);
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -221,7 +221,7 @@ exports.getDashboardStats = async (req, res) => {
       return res.status(200).json({ source: 'REDIS_CACHE_HIT', cached: true, data: cached });
     }
 
-    const [totalResumes, totalJobs, atsData, matchData, recentActivities] = await Promise.all([
+    const [totalResumes, totalJobs, atsData, matchData, recentActiTechies] = await Promise.all([
       Resume.countDocuments(),
       JobDescription.countDocuments(),
       AnalysisReport.aggregate([
@@ -242,7 +242,7 @@ exports.getDashboardStats = async (req, res) => {
           }
         }
       ]),
-      ActivityLog.find().sort({ timestamp: -1 }).limit(8).populate('userId', 'name email')
+      ActiTechyLog.find().sort({ timestamp: -1 }).limit(8).populate('userId', 'name email')
     ]);
 
     const dashboardPayload = {
@@ -252,7 +252,7 @@ exports.getDashboardStats = async (req, res) => {
       averageAtsScore: atsData[0]?.averageAtsScore ? Math.round(atsData[0].averageAtsScore) : 0,
       totalJobMatches: matchData[0]?.totalMatches || 0,
       averageJobMatch: matchData[0]?.averageMatch ? Math.round(matchData[0].averageMatch) : 0,
-      recentActivities
+      recentActiTechies
     };
 
     // Cache in Redis for 120 seconds

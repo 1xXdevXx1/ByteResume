@@ -168,7 +168,7 @@ export default function ResumeUpload({ setActiveTab, setSelectedResumeId }) {
                 />
                 <input 
                   type="email" 
-                  placeholder="Email (e.g. siddharth@vitstudent.ac.in)" 
+                  placeholder="Email (e.g. siddharth@Techstudent.ac.in)" 
                   value={newUserEmail} 
                   onChange={(e) => setNewUserEmail(e.target.value)}
                   style={{ marginBottom: '12px' }}

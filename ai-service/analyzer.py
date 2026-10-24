@@ -1,6 +1,6 @@
 """
 Resume Analysis Engine for ByteResume
-BCSE406L - NoSQL Database Project
+NoSQL Database Architecture Project
 Calculates deterministic ATS score (0-100) using a transparent 4-pillar model:
 1. Technical Skills Breadth (40 pts)
 2. Section Completeness (25 pts)

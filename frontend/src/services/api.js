@@ -48,7 +48,7 @@ export const getDashboardStats = () => api.get('/stats/dashboard');
 export const getAtsStats = () => api.get('/stats/ats');
 export const getMissingSkillsStats = () => api.get('/stats/missing-skills');
 export const getJobMatchStats = () => api.get('/stats/job-matches');
-export const getActivityStats = () => api.get('/stats/activity');
+export const getActiTechyStats = () => api.get('/stats/actiTechy');
 export const getUserAtsHistory = (userId) => api.get(`/stats/user/${userId}/ats-history`);
 
 // DB Showcase & Redis Caching

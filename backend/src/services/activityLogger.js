@@ -1,8 +1,8 @@
-const ActivityLog = require('../models/ActivityLog');
+const ActiTechyLog = require('../models/ActiTechyLog');
 
-async function logActivity(action, details = {}, userId = null) {
+async function logActiTechy(action, details = {}, userId = null) {
   try {
-    const log = new ActivityLog({
+    const log = new ActiTechyLog({
       action,
       details,
       userId,
@@ -11,9 +11,9 @@ async function logActivity(action, details = {}, userId = null) {
     await log.save();
     return log;
   } catch (err) {
-    console.warn(`[ActivityLog] Failed to record activity "${action}":`, err.message);
+    console.warn(`[ActiTechyLog] Failed to record actiTechy "${action}":`, err.message);
     return null;
   }
 }
 
-module.exports = { logActivity };
+module.exports = { logActiTechy };

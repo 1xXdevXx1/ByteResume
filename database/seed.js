@@ -1,8 +1,8 @@
 /**
  * Database Seeder for ByteResume
- * BCSE406L - NoSQL Database Project (VIT Vellore)
+ * NoSQL Database Architecture Project (Production Engineering)
  * Populates MongoDB with realistic candidate resumes, job postings,
- * analysis reports, match results, and activity logs.
+ * analysis reports, match results, and actiTechy logs.
  */
 
 const path = require('path');
@@ -15,27 +15,27 @@ const Resume = require('../backend/src/models/Resume');
 const JobDescription = require('../backend/src/models/JobDescription');
 const AnalysisReport = require('../backend/src/models/AnalysisReport');
 const MatchResult = require('../backend/src/models/MatchResult');
-const ActivityLog = require('../backend/src/models/ActivityLog');
+const ActiTechyLog = require('../backend/src/models/ActiTechyLog');
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/resume_analyzer';
 
 const sampleUsers = [
-  { name: 'Devesh Singh', email: 'devesh.singh2022@vitstudent.ac.in' },
-  { name: 'Vineet Kumar Mishra', email: 'vineet.mishra2022@vitstudent.ac.in' },
+  { name: 'Candidate Profile', email: 'Developer.singh2022@Techstudent.ac.in' },
+  { name: 'Candidate Profile', email: 'Developer.mishra2022@Techstudent.ac.in' },
   { name: 'Aarav Sharma', email: 'aarav.sharma@gmail.com' },
-  { name: 'Priya Sundaram', email: 'priya.sundaram@vit.ac.in' },
+  { name: 'Priya Sundaram', email: 'priya.sundaram@Tech.ac.in' },
   { name: 'Rohan Patel', email: 'rohan.patel@outlook.com' }
 ];
 
 const sampleResumes = [
   {
-    userIndex: 0, // Devesh Singh - Full Stack
-    fileName: 'Devesh_Singh_FullStack_Resume.pdf',
+    userIndex: 0, // Candidate Profile - Full Stack
+    fileName: 'Developer_Singh_FullStack_Resume.pdf',
     fileType: 'pdf',
-    rawText: `Devesh Singh - Full Stack Software Engineer
-Email: devesh.singh2022@vitstudent.ac.in | GitHub: github.com/devesh-singh
+    rawText: `Candidate Profile - Full Stack Software Engineer
+Email: Developer.singh2022@Techstudent.ac.in | GitHub: github.com/Developer-singh
 Education:
-Bachelor of Technology in Computer Science and Engineering, VIT Vellore (CGPA: 9.1, 2022 - 2026)
+Bachelor of Technology in Computer Science and Engineering, Production Engineering (CGPA: 9.1, 2022 - 2026)
 Technical Skills:
 Languages: JavaScript, TypeScript, Python, C++, SQL, HTML, CSS
 Frameworks: React, Node.js, Express, Next.js, Flask
@@ -54,7 +54,7 @@ Projects:
 - Developed microservices architecture using Docker, Express, MongoDB, and Stripe payment gateway.
 Soft Skills: Leadership, Problem Solving, Agile, Team Collaboration, Communication`,
     skills: ['JavaScript', 'TypeScript', 'Python', 'React', 'Node.js', 'Express', 'MongoDB', 'Redis', 'PostgreSQL', 'Docker', 'Git', 'AWS', 'REST API', 'Leadership', 'Problem Solving', 'Communication', 'Agile'],
-    education: ['B.Tech in Computer Science and Engineering, VIT Vellore (2022 - 2026)'],
+    education: ['B.Tech in Computer Science and Engineering, Production Engineering (2022 - 2026)'],
     experience: ['Full Stack Engineering Intern at TechFlow Solutions (May 2025 - July 2025) - Built scalable microservices with Node.js and MongoDB'],
     projects: [
       'ByteResume - AI Resume Analyzer with Redis & MongoDB',
@@ -62,13 +62,13 @@ Soft Skills: Leadership, Problem Solving, Agile, Team Collaboration, Communicati
     ]
   },
   {
-    userIndex: 1, // Vineet Kumar Mishra - Backend & Systems
-    fileName: 'Vineet_Mishra_Backend_Resume.docx',
+    userIndex: 1, // Candidate Profile - Backend & Systems
+    fileName: 'Developer_Mishra_Backend_Resume.docx',
     fileType: 'docx',
-    rawText: `Vineet Kumar Mishra - Backend Systems Engineer
-Email: vineet.mishra2022@vitstudent.ac.in | LinkedIn: linkedin.com/in/vineet-mishra
+    rawText: `Candidate Profile - Backend Systems Engineer
+Email: Developer.mishra2022@Techstudent.ac.in | LinkedIn: linkedin.com/in/Developer-mishra
 Education:
-Bachelor of Technology in Computer Science, VIT Vellore (2022 - 2026)
+Bachelor of Technology in Computer Science, Production Engineering (2022 - 2026)
 Technical Skills:
 Languages: Java, Python, Go, C++, SQL
 Frameworks: Spring Boot, Django, FastAPI, Express
@@ -77,7 +77,7 @@ Tools: Docker, Kubernetes, Kafka, Git, Linux, AWS, System Design, CI/CD
 Experience:
 Backend Developer Intern at DataPulse Labs (June 2025 - August 2025)
 - Architected high-throughput event-driven data streaming pipeline with Apache Kafka and Redis.
-- Implemented MongoDB aggregation framework for real-time user activity analytics.
+- Implemented MongoDB aggregation framework for real-time user actiTechy analytics.
 - Deployed fault-tolerant services on AWS ECS clusters with automated CI/CD pipelines.
 Projects:
 1. Distributed Cache & Key-Value Engine
@@ -86,7 +86,7 @@ Projects:
 - Designed ACID-compliant transaction manager on top of MongoDB replica sets.
 Soft Skills: Critical Thinking, System Design, Teamwork, Problem Solving`,
     skills: ['Java', 'Python', 'Go', 'Spring Boot', 'MongoDB', 'Redis', 'Cassandra', 'PostgreSQL', 'Docker', 'Kubernetes', 'Kafka', 'Git', 'AWS', 'System Design', 'CI/CD', 'Problem Solving', 'Teamwork'],
-    education: ['B.Tech Computer Science, VIT Vellore (2022 - 2026)'],
+    education: ['B.Tech Computer Science, Production Engineering (2022 - 2026)'],
     experience: ['Backend Developer Intern at DataPulse Labs - Kafka & Redis stream processing'],
     projects: [
       'Distributed Key-Value Cache Engine in Go',
@@ -100,14 +100,14 @@ Soft Skills: Critical Thinking, System Design, Teamwork, Problem Solving`,
     rawText: `Aarav Sharma - Machine Learning & Data Engineer
 Email: aarav.sharma@gmail.com
 Education:
-Master of Science in Data Science, VIT Vellore (2023 - 2025)
+Master of Science in Data Science, Production Engineering (2023 - 2025)
 Technical Skills:
 Languages: Python, R, SQL, C++
 Frameworks: PyTorch, TensorFlow, Scikit-Learn, Pandas, NumPy, FastAPI
 Databases: MongoDB, PostgreSQL, Elasticsearch
 Tools: Docker, MLflow, Git, AWS S3, Spark, Hadoop
 Experience:
-Machine Learning Research Assistant at VIT AI Lab
+Machine Learning Research Assistant at Tech AI Lab
 - Built deep learning models for text classification and biomedical entity extraction.
 - Processed 100GB+ unstructured dataset using PySpark and MongoDB storage.
 Projects:
@@ -115,8 +115,8 @@ Projects:
 2. Predictive Churn Classifier - Gradient boosting model with 92% ROC-AUC score.
 Soft Skills: Analytical Thinking, Presentation, Work Ethic, Research`,
     skills: ['Python', 'SQL', 'Machine Learning', 'Deep Learning', 'NLP', 'MongoDB', 'PostgreSQL', 'Docker', 'Git', 'Data Structures', 'Algorithms', 'Analytical Thinking', 'Communication'],
-    education: ['M.S. in Data Science, VIT Vellore (2023 - 2025)'],
-    experience: ['Machine Learning Research Assistant at VIT AI Lab'],
+    education: ['M.S. in Data Science, Production Engineering (2023 - 2025)'],
+    experience: ['Machine Learning Research Assistant at Tech AI Lab'],
     projects: ['Neural Resume Matcher with Transformers', 'Predictive Churn Classifier']
   },
   {
@@ -124,9 +124,9 @@ Soft Skills: Analytical Thinking, Presentation, Work Ethic, Research`,
     fileName: 'Priya_Sundaram_DevOps_Resume.pdf',
     fileType: 'pdf',
     rawText: `Priya Sundaram - DevOps & Cloud Infrastructure Engineer
-Email: priya.sundaram@vit.ac.in
+Email: priya.sundaram@Tech.ac.in
 Education:
-Bachelor of Technology in Information Technology, VIT Vellore (2021 - 2025)
+Bachelor of Technology in Information Technology, Production Engineering (2021 - 2025)
 Technical Skills:
 Languages: Python, Bash, Go, SQL
 Cloud & DevOps: AWS, Azure, Docker, Kubernetes, Terraform, Ansible, Jenkins, CI/CD, Nginx, Prometheus, Grafana
@@ -141,7 +141,7 @@ Projects:
 2. Resilient MongoDB Sharded Cluster deployment across multi-availability zones.
 Soft Skills: Incident Management, Collaboration, Attention to Detail, Problem Solving`,
     skills: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Linux', 'CI/CD', 'Git', 'Python', 'MongoDB', 'Redis', 'Problem Solving', 'Collaboration', 'Attention to Detail'],
-    education: ['B.Tech in Information Technology, VIT Vellore (2021 - 2025)'],
+    education: ['B.Tech in Information Technology, Production Engineering (2021 - 2025)'],
     experience: ['Cloud Operations Associate at CloudNative Corp'],
     projects: ['GitOps Deployment Pipeline with ArgoCD', 'Resilient MongoDB Sharded Cluster on AWS']
   },
@@ -161,12 +161,12 @@ Tools: Vite, Webpack, Git, Jest, Cypress, Figma
 Experience:
 Frontend Developer at PixelCraft Studio (2024 - 2026)
 - Developed modern user interfaces in React and Next.js with sub-second page transitions.
-- Improved Core Web Vitals resulting in 40% increase in user retention.
+- Improved Core Web Techals resulting in 40% increase in user retention.
 Projects:
 1. Enterprise Analytics Dashboard with D3.js and React.
 2. Collaborative Markdown Editor with offline PWA synchronization.
-Soft Skills: Creativity, UI/UX Design, Teamwork, Communication`,
-    skills: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'HTML', 'CSS', 'MongoDB', 'Git', 'Vite', 'Communication', 'Creativity', 'Teamwork'],
+Soft Skills: CreatiTechy, UI/UX Design, Teamwork, Communication`,
+    skills: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'HTML', 'CSS', 'MongoDB', 'Git', 'Vite', 'Communication', 'CreatiTechy', 'Teamwork'],
     education: ['B.E. in Computer Engineering (2020 - 2024)'],
     experience: ['Frontend Developer at PixelCraft Studio (2024 - 2026)'],
     projects: ['Enterprise Analytics Dashboard in React', 'Collaborative PWA Markdown Editor']
@@ -219,7 +219,7 @@ async function seedDatabase() {
 
     // Clear existing data in correct order
     console.log('[Seed] Clearing existing collections...');
-    await ActivityLog.deleteMany({});
+    await ActiTechyLog.deleteMany({});
     await MatchResult.deleteMany({});
     await AnalysisReport.deleteMany({});
     await Resume.deleteMany({});
@@ -353,8 +353,8 @@ async function seedDatabase() {
           'Missing robust backend database and distributed caching technologies (MongoDB, Redis)',
           'Lacks containerization tools (Docker/Kubernetes)'
         ],
-        technicalSkills: createdResumes[4].skills.filter(s => !['Communication', 'Creativity', 'Teamwork'].includes(s)),
-        softSkills: ['Communication', 'Creativity', 'Teamwork'],
+        technicalSkills: createdResumes[4].skills.filter(s => !['Communication', 'CreatiTechy', 'Teamwork'].includes(s)),
+        softSkills: ['Communication', 'CreatiTechy', 'Teamwork'],
         missingSkills: ['Docker', 'Redis', 'Kubernetes', 'Python', 'AWS', 'CI/CD'],
         recommendations: [
           'Gain hands-on proficiency in NoSQL document design with MongoDB',
@@ -371,7 +371,7 @@ async function seedDatabase() {
     console.log('[Seed] Generating match comparisons between resumes and jobs...');
     const sampleMatches = [
       {
-        resumeId: createdResumes[0]._id, // Devesh vs Full Stack (Google)
+        resumeId: createdResumes[0]._id, // Developer vs Full Stack (Google)
         jobDescriptionId: createdJobs[0]._id,
         matchPercentage: 96,
         matchedSkills: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'MongoDB', 'Redis', 'REST API', 'Git', 'Docker', 'AWS'],
@@ -382,7 +382,7 @@ async function seedDatabase() {
         ]
       },
       {
-        resumeId: createdResumes[1]._id, // Vineet vs Backend Systems (AWS)
+        resumeId: createdResumes[1]._id, // Developer vs Backend Systems (AWS)
         jobDescriptionId: createdJobs[1]._id,
         matchPercentage: 94,
         matchedSkills: ['Java', 'Python', 'Go', 'MongoDB', 'Redis', 'Docker', 'Kubernetes', 'System Design', 'Kafka', 'AWS'],
@@ -426,7 +426,7 @@ async function seedDatabase() {
         ]
       },
       {
-        resumeId: createdResumes[0]._id, // Devesh vs Backend Systems
+        resumeId: createdResumes[0]._id, // Developer vs Backend Systems
         jobDescriptionId: createdJobs[1]._id,
         matchPercentage: 75,
         matchedSkills: ['Python', 'MongoDB', 'Redis', 'Docker', 'AWS'],
@@ -441,8 +441,8 @@ async function seedDatabase() {
     const createdMatches = await MatchResult.insertMany(sampleMatches);
     console.log(`[Seed] Inserted ${createdMatches.length} match results`);
 
-    // 6. Insert Activity Logs
-    console.log('[Seed] Generating audit activity logs...');
+    // 6. Insert ActiTechy Logs
+    console.log('[Seed] Generating audit actiTechy logs...');
     const sampleLogs = [
       { userId: createdUsers[0]._id, action: 'USER_CREATED', details: { name: createdUsers[0].name, email: createdUsers[0].email }, timestamp: new Date(Date.now() - 5 * 86400000) },
       { userId: createdUsers[0]._id, action: 'RESUME_UPLOADED', details: { fileName: createdResumes[0].fileName }, timestamp: new Date(Date.now() - 4 * 86400000) },
@@ -459,8 +459,8 @@ async function seedDatabase() {
       { userId: createdUsers[4]._id, action: 'JOB_MATCHED', details: { jobTitle: createdJobs[4].title, matchPercentage: 86 }, timestamp: new Date(Date.now() - 6 * 3600000) }
     ];
 
-    const createdLogs = await ActivityLog.insertMany(sampleLogs);
-    console.log(`[Seed] Inserted ${createdLogs.length} activity audit logs`);
+    const createdLogs = await ActiTechyLog.insertMany(sampleLogs);
+    console.log(`[Seed] Inserted ${createdLogs.length} actiTechy audit logs`);
 
     console.log('====================================================');
     console.log(' SEED DATA GENERATION COMPLETE');
@@ -469,7 +469,7 @@ async function seedDatabase() {
     console.log(` Total Job Postings:    ${createdJobs.length}`);
     console.log(` Total Analysis Reports:${createdReports.length}`);
     console.log(` Total Match Results:   ${createdMatches.length}`);
-    console.log(` Total Activity Logs:   ${createdLogs.length}`);
+    console.log(` Total ActiTechy Logs:   ${createdLogs.length}`);
     console.log('====================================================');
 
     await mongoose.disconnect();

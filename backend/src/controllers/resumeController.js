@@ -3,7 +3,7 @@ const User = require('../models/User');
 const AnalysisReport = require('../models/AnalysisReport');
 const MatchResult = require('../models/MatchResult');
 const { extractResume } = require('../services/aiService');
-const { logActivity } = require('../services/activityLogger');
+const { logActiTechy } = require('../services/actiTechyLogger');
 const redisClient = require('../services/redisClient');
 const path = require('path');
 const fs = require('fs');
@@ -23,14 +23,14 @@ exports.createResume = async (req, res) => {
             email: userEmail.toLowerCase().trim()
           });
           await user.save();
-          await logActivity('USER_CREATED', { userId: user._id, email: user.email }, user._id);
+          await logActiTechy('USER_CREATED', { userId: user._id, email: user.email }, user._id);
         }
         userId = user._id;
       } else {
         // Find default or first existing user
         let user = await User.findOne();
         if (!user) {
-          user = new User({ name: 'Default Student', email: 'student@vit.ac.in' });
+          user = new User({ name: 'Default Student', email: 'student@Tech.ac.in' });
           await user.save();
         }
         userId = user._id;
@@ -65,7 +65,7 @@ exports.createResume = async (req, res) => {
 
     await resume.save();
 
-    await logActivity('RESUME_UPLOADED', {
+    await logActiTechy('RESUME_UPLOADED', {
       resumeId: resume._id,
       fileName: resume.fileName,
       skillsCount: resume.skills.length
@@ -132,7 +132,7 @@ exports.updateResume = async (req, res) => {
     // Invalidate analysis cache for this resume
     await redisClient.del(`resume_analysis:${resume._id}`);
 
-    await logActivity('RESUME_UPDATED', { resumeId: resume._id }, resume.userId);
+    await logActiTechy('RESUME_UPDATED', { resumeId: resume._id }, resume.userId);
     return res.status(200).json(resume);
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -158,7 +158,7 @@ exports.deleteResume = async (req, res) => {
       await redisClient.del(k);
     }
 
-    await logActivity('RESUME_DELETED', { resumeId: resume._id, fileName: resume.fileName }, resume.userId);
+    await logActiTechy('RESUME_DELETED', { resumeId: resume._id, fileName: resume.fileName }, resume.userId);
     return res.status(200).json({ message: 'Resume and associated reports deleted successfully', resumeId: resume._id });
   } catch (err) {
     return res.status(500).json({ error: err.message });

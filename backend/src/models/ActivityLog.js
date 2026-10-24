@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const activityLogSchema = new mongoose.Schema({
+const actiTechyLogSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -21,9 +21,9 @@ const activityLogSchema = new mongoose.Schema({
   }
 }, { versionKey: false });
 
-// Indexes on action, user, and timestamp for activity auditing
-activityLogSchema.index({ userId: 1 });
-activityLogSchema.index({ timestamp: -1 });
-activityLogSchema.index({ action: 1, timestamp: -1 });
+// Indexes on action, user, and timestamp for actiTechy auditing
+actiTechyLogSchema.index({ userId: 1 });
+actiTechyLogSchema.index({ timestamp: -1 });
+actiTechyLogSchema.index({ action: 1, timestamp: -1 });
 
-module.exports = mongoose.model('ActivityLog', activityLogSchema);
+module.exports = mongoose.model('ActiTechyLog', actiTechyLogSchema);

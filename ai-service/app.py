@@ -1,6 +1,6 @@
 """
 Flask AI & NLP Microservice for ByteResume
-BCSE406L - NoSQL Database Project
+NoSQL Database Architecture Project
 Port: 8000
 """
 

@@ -1,6 +1,6 @@
 """
 Job Matching Engine for ByteResume
-BCSE406L - NoSQL Database Project
+NoSQL Database Architecture Project
 Compares resume skill profile against job description requirements,
 computes match percentage, lists matched and missing skills,
 and provides tailored recommendations.

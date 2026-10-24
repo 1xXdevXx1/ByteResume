@@ -1,8 +1,8 @@
 /**
  * Database Index Verification & Creation Script
- * BCSE406L - NoSQL Database (VIT Vellore)
+ * NoSQL Database Architecture (Production Engineering)
  * Creates and inspects B-tree and text indexes across all 6 MongoDB collections.
- * Demonstrates db.collection.getIndexes() with viva explanations.
+ * Demonstrates db.collection.getIndexes() with evaluation explanations.
  */
 
 const path = require('path');
@@ -15,7 +15,7 @@ const Resume = require('../backend/src/models/Resume');
 const JobDescription = require('../backend/src/models/JobDescription');
 const AnalysisReport = require('../backend/src/models/AnalysisReport');
 const MatchResult = require('../backend/src/models/MatchResult');
-const ActivityLog = require('../backend/src/models/ActivityLog');
+const ActiTechyLog = require('../backend/src/models/ActiTechyLog');
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/resume_analyzer';
 
@@ -116,8 +116,8 @@ const INDEX_DOCUMENTATION = [
     ]
   },
   {
-    collection: 'activityLogs',
-    model: ActivityLog,
+    collection: 'actiTechyLogs',
+    model: ActiTechyLog,
     indexes: [
       {
         spec: { userId: 1 },
@@ -144,7 +144,7 @@ async function setupIndexes() {
     await mongoose.connect(MONGODB_URI);
     console.log('[Indexes] Connected to MongoDB at:', MONGODB_URI);
     console.log('================================================================');
-    console.log(' MONGODB INDEX CREATION & VERIFICATION (Review 2)');
+    console.log(' MONGODB INDEX CREATION & VERIFICATION (Production Architecture)');
     console.log('================================================================\n');
 
     for (const item of INDEX_DOCUMENTATION) {
@@ -164,7 +164,7 @@ async function setupIndexes() {
       console.log(`Active Indexes in db.${item.collection}.getIndexes():`);
       console.dir(existingIndexes, { depth: null, colors: true });
 
-      console.log('\nEngineering Rationale for Viva:');
+      console.log('\nEngineering Rationale for Evaluation:');
       item.indexes.forEach((idx, i) => {
         console.log(`  [${i + 1}] Index Key: ${JSON.stringify(idx.spec)}`);
         console.log(`      Purpose:   ${idx.purpose}`);

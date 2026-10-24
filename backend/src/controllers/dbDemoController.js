@@ -4,10 +4,10 @@ const Resume = require('../models/Resume');
 const JobDescription = require('../models/JobDescription');
 const AnalysisReport = require('../models/AnalysisReport');
 const MatchResult = require('../models/MatchResult');
-const ActivityLog = require('../models/ActivityLog');
+const ActiTechyLog = require('../models/ActiTechyLog');
 const redisClient = require('../services/redisClient');
 
-// Descriptive rationale for each index (for Review 2 viva explanation)
+// Descriptive rationale for each index (for Production Architecture evaluation explanation)
 const INDEX_EXPLANATIONS = {
   users: {
     'email_1': 'Unique index on email ensures no duplicate candidate accounts and provides O(1) B-tree lookup time during authentication and user retrieval.'
@@ -32,9 +32,9 @@ const INDEX_EXPLANATIONS = {
     'jobDescriptionId_1': 'Rapidly gathers all candidate matches for a specific recruiter job opening.',
     'resumeId_1_jobDescriptionId_1': 'Compound index for quick verification of whether a resume has already been evaluated against a job posting.'
   },
-  activitylogs: {
+  actiTechylogs: {
     'userId_1': 'Audits all system actions triggered by an individual user.',
-    'timestamp_-1': 'Powers recent activity feed and time-series audit queries.',
+    'timestamp_-1': 'Powers recent actiTechy feed and time-series audit queries.',
     'action_1_timestamp_-1': 'Compound index optimizing audit log filtering by action type sorted by recency.'
   }
 };
@@ -48,7 +48,7 @@ exports.getDatabaseIndexes = async (req, res) => {
       { name: 'jobdescriptions', model: JobDescription },
       { name: 'analysisreports', model: AnalysisReport },
       { name: 'matchresults', model: MatchResult },
-      { name: 'activitylogs', model: ActivityLog }
+      { name: 'actiTechylogs', model: ActiTechyLog }
     ];
 
     const report = [];
@@ -86,7 +86,7 @@ exports.getCollectionStats = async (req, res) => {
       { name: 'jobDescriptions', model: JobDescription, description: 'Recruiter job postings & required skills' },
       { name: 'analysisReports', model: AnalysisReport, description: 'ATS scores (0-100), strengths, weaknesses & recommendations' },
       { name: 'matchResults', model: MatchResult, description: 'Resume-to-job match percentages & skill gaps' },
-      { name: 'activityLogs', model: ActivityLog, description: 'Audit trail of user actions & system events' }
+      { name: 'actiTechyLogs', model: ActiTechyLog, description: 'Audit trail of user actions & system events' }
     ];
 
     const stats = [];
@@ -115,7 +115,7 @@ exports.getCollectionDocuments = async (req, res) => {
     else if (name.toLowerCase() === 'jobdescriptions') model = JobDescription;
     else if (name.toLowerCase() === 'analysisreports') model = AnalysisReport;
     else if (name.toLowerCase() === 'matchresults') model = MatchResult;
-    else if (name.toLowerCase() === 'activitylogs') model = ActivityLog;
+    else if (name.toLowerCase() === 'actiTechylogs') model = ActiTechyLog;
 
     if (!model) {
       return res.status(404).json({ error: `Unknown collection: ${name}` });

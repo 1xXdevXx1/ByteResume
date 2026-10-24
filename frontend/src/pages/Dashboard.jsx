@@ -5,7 +5,7 @@ import {
   CheckCircle2, 
   BarChart3, 
   TrendingUp, 
-  Activity,
+  ActiTechy,
   Layers
 } from 'lucide-react';
 
@@ -42,7 +42,7 @@ export default function Dashboard({ setActiveTab }) {
           Recruitment Intelligence Dashboard
         </h2>
         <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '4px' }}>
-          BCSE406L NoSQL Database Project • Team ByteResume (Devesh Singh & Vineet Mishra)
+          NoSQL Database Architecture Project • Team ByteResume (Development Team)
         </p>
       </div>
 
@@ -142,12 +142,12 @@ export default function Dashboard({ setActiveTab }) {
         </div>
       </div>
 
-      {/* Live Activity Stream */}
+      {/* Live ActiTechy Stream */}
       <div className="card">
         <div className="card-title" style={{ justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Activity size={18} color="#818CF8" />
-            <span>Audit Trail (MongoDB 'activityLogs' Collection)</span>
+            <ActiTechy size={18} color="#818CF8" />
+            <span>Audit Trail (MongoDB 'actiTechyLogs' Collection)</span>
           </div>
           <button className="btn btn-outline" style={{ fontSize: '12px', padding: '5px 12px' }} onClick={fetchStats}>
             Refresh Stream
@@ -165,8 +165,8 @@ export default function Dashboard({ setActiveTab }) {
               </tr>
             </thead>
             <tbody>
-              {stats?.recentActivities && stats.recentActivities.length > 0 ? (
-                stats.recentActivities.map((log) => (
+              {stats?.recentActiTechies && stats.recentActiTechies.length > 0 ? (
+                stats.recentActiTechies.map((log) => (
                   <tr key={log._id}>
                     <td>
                       <span className={`badge ${
@@ -191,7 +191,7 @@ export default function Dashboard({ setActiveTab }) {
               ) : (
                 <tr>
                   <td colSpan="4" style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '24px' }}>
-                    No activity logs recorded yet. Upload a resume or run an analysis!
+                    No actiTechy logs recorded yet. Upload a resume or run an analysis!
                   </td>
                 </tr>
               )}

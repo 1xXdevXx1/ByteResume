@@ -1,6 +1,6 @@
 const JobDescription = require('../models/JobDescription');
 const MatchResult = require('../models/MatchResult');
-const { logActivity } = require('../services/activityLogger');
+const { logActiTechy } = require('../services/actiTechyLogger');
 const redisClient = require('../services/redisClient');
 const { extractResume } = require('../services/aiService');
 const path = require('path');
@@ -155,7 +155,7 @@ exports.uploadJob = async (req, res) => {
     });
 
     await job.save();
-    await logActivity('JOB_CREATED', { 
+    await logActiTechy('JOB_CREATED', { 
       jobId: job._id, 
       title: job.title, 
       company: job.company, 
@@ -187,7 +187,7 @@ exports.createJob = async (req, res) => {
     });
 
     await job.save();
-    await logActivity('JOB_CREATED', { jobId: job._id, title: job.title, company: job.company });
+    await logActiTechy('JOB_CREATED', { jobId: job._id, title: job.title, company: job.company });
     return res.status(201).json(job);
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -239,7 +239,7 @@ exports.updateJob = async (req, res) => {
       await redisClient.del(k);
     }
 
-    await logActivity('JOB_UPDATED', { jobId: job._id, title: job.title });
+    await logActiTechy('JOB_UPDATED', { jobId: job._id, title: job.title });
     return res.status(200).json(job);
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -263,7 +263,7 @@ exports.deleteJob = async (req, res) => {
       await redisClient.del(k);
     }
 
-    await logActivity('JOB_DELETED', { jobId: job._id, title: job.title });
+    await logActiTechy('JOB_DELETED', { jobId: job._id, title: job.title });
     return res.status(200).json({ message: 'Job description and related match results deleted', jobId: job._id });
   } catch (err) {
     return res.status(500).json({ error: err.message });

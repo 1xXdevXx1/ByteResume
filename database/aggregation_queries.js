@@ -1,6 +1,6 @@
 /**
  * MongoDB Aggregation Pipeline Runner
- * BCSE406L - NoSQL Database (VIT Vellore)
+ * NoSQL Database Architecture (Production Engineering)
  * Team: ByteResume
  *
  * Implements and executes the 6 mandatory MongoDB aggregation pipelines:
@@ -9,7 +9,7 @@
  * 3. Most Frequently Missing Skills ($unwind, $group, $sort, $limit, $project)
  * 4. Average Job-Match Percentage ($group, $project)
  * 5. Job-Match Statistics by Job Title ($lookup, $unwind, $group, $project, $sort)
- * 6. Activity Count by Action ($group, $sort, $project)
+ * 6. ActiTechy Count by Action ($group, $sort, $project)
  */
 
 const path = require('path');
@@ -20,7 +20,7 @@ require(path.join(__dirname, '../backend/node_modules/dotenv')).config({ path: p
 const User = require('../backend/src/models/User');
 const AnalysisReport = require('../backend/src/models/AnalysisReport');
 const MatchResult = require('../backend/src/models/MatchResult');
-const ActivityLog = require('../backend/src/models/ActivityLog');
+const ActiTechyLog = require('../backend/src/models/ActiTechyLog');
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/resume_analyzer';
 
@@ -31,7 +31,7 @@ async function runAggregations() {
     console.log('[Aggregations] Connected to MongoDB at:', MONGODB_URI);
 
     console.log('\n================================================================');
-    console.log('   BCSE406L - MANDATORY MONGODB AGGREGATION PIPELINES (VIVA)    ');
+    console.log('    MANDATORY MONGODB AGGREGATION PIPELINES (VIVA)    ');
     console.log('================================================================\n');
 
     // -------------------------------------------------------------
@@ -201,9 +201,9 @@ async function runAggregations() {
     console.log('----------------------------------------------------------------\n');
 
     // -------------------------------------------------------------
-    // AGGREGATION 6: Activity Count by Action
+    // AGGREGATION 6: ActiTechy Count by Action
     // -------------------------------------------------------------
-    console.log('>>> [AGGREGATION 6] System Activity Audit Count Grouped by Action');
+    console.log('>>> [AGGREGATION 6] System ActiTechy Audit Count Grouped by Action');
     console.log('Stages Used: $group -> $sort -> $project');
     const agg6Pipeline = [
       {
@@ -224,7 +224,7 @@ async function runAggregations() {
       }
     ];
     console.log('Pipeline Definition:', JSON.stringify(agg6Pipeline, null, 2));
-    const agg6Result = await ActivityLog.aggregate(agg6Pipeline);
+    const agg6Result = await ActiTechyLog.aggregate(agg6Pipeline);
     console.table(agg6Result);
     console.log('================================================================');
     console.log(' ALL 6 MONGODB AGGREGATION PIPELINES EXECUTED SUCCESSFULLY');

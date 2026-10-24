@@ -3,7 +3,7 @@ const Resume = require('../models/Resume');
 const JobDescription = require('../models/JobDescription');
 const redisClient = require('../services/redisClient');
 const { matchJob } = require('../services/aiService');
-const { logActivity } = require('../services/activityLogger');
+const { logActiTechy } = require('../services/actiTechyLogger');
 
 const MATCH_CACHE_TTL = 3600; // 1 hour
 
@@ -82,8 +82,8 @@ exports.matchResumeToJob = async (req, res) => {
 
     await redisClient.set(cacheKey, responsePayload, MATCH_CACHE_TTL);
 
-    // 6. Log activity in MongoDB
-    await logActivity('JOB_MATCHED', {
+    // 6. Log actiTechy in MongoDB
+    await logActiTechy('JOB_MATCHED', {
       resumeId: resume._id,
       jobId: job._id,
       matchPercentage: matchRecord.matchPercentage

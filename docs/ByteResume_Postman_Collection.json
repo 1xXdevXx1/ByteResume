@@ -1,7 +1,7 @@
 {
   "info": {
-    "name": "ByteResume - AI Resume Analyzer (BCSE406L NoSQL Database)",
-    "description": "Comprehensive Postman API collection for BCSE406L Review 2 viva demonstration.\nTeam: ByteResume (Devesh Singh & Vineet Kumar Mishra) - VIT Vellore",
+    "name": "ByteResume - AI Resume Analyzer (NoSQL Database Architecture)",
+    "description": "Comprehensive Postman API collection for Production Architecture evaluation demonstration.\nTeam: ByteResume (Development Team) - Production Engineering",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -15,7 +15,7 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Rahul Verma\",\n  \"email\": \"rahul.verma2022@vitstudent.ac.in\"\n}"
+              "raw": "{\n  \"name\": \"Rahul Verma\",\n  \"email\": \"rahul.verma2022@Techstudent.ac.in\"\n}"
             },
             "url": { "raw": "{{baseUrl}}/api/users", "host": ["{{baseUrl}}"], "path": ["api", "users"] }
           }
@@ -65,7 +65,7 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"fileName\": \"Sample_Resume.txt\",\n  \"rawText\": \"Experienced Software Engineer skilled in Python, React, Node.js, MongoDB, Redis, Docker, and AWS. Bachelor of Technology in Computer Science from VIT Vellore. Built full-stack applications.\"\n}"
+              "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"fileName\": \"Sample_Resume.txt\",\n  \"rawText\": \"Experienced Software Engineer skilled in Python, React, Node.js, MongoDB, Redis, Docker, and AWS. Bachelor of Technology in Computer Science from Production Engineering. Built full-stack applications.\"\n}"
             },
             "url": { "raw": "{{baseUrl}}/api/resumes", "host": ["{{baseUrl}}"], "path": ["api", "resumes"] }
           }
@@ -211,16 +211,16 @@
           }
         },
         {
-          "name": "Aggregation 4: Activity Audit Counts",
+          "name": "Aggregation 4: ActiTechy Audit Counts",
           "request": {
             "method": "GET",
-            "url": { "raw": "{{baseUrl}}/api/stats/activity", "host": ["{{baseUrl}}"], "path": ["api", "stats", "activity"] }
+            "url": { "raw": "{{baseUrl}}/api/stats/actiTechy", "host": ["{{baseUrl}}"], "path": ["api", "stats", "actiTechy"] }
           }
         }
       ]
     },
     {
-      "name": "7. Database & Cache Verification (Viva)",
+      "name": "7. Database & Cache Verification (Evaluation)",
       "item": [
         {
           "name": "Get MongoDB Indexes (db.collection.getIndexes())",

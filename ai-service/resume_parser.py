@@ -1,6 +1,6 @@
 """
 Resume Parser Module for ByteResume
-BCSE406L - NoSQL Database Project
+NoSQL Database Architecture Project
 Extracts text from PDF and DOCX files, identifies technical skills,
 soft skills, education, work experience, and projects.
 """
@@ -28,7 +28,7 @@ SKILL_TAXONOMY = {
     "tools": [
         "docker", "kubernetes", "git", "github", "gitlab", "aws", "azure", "gcp",
         "google cloud", "linux", "jenkins", "terraform", "ansible", "nginx", "graphql",
-        "rest api", "restful", "kafka", "rabbitmq", "postman", "vite", "webpack"
+        "rest api", "restful", "kafka", "rabbitmq", "postman", "Vite", "webpack"
     ],
     "concepts": [
         "data structures", "algorithms", "machine learning", "deep learning",
@@ -38,7 +38,7 @@ SKILL_TAXONOMY = {
     ],
     "soft_skills": [
         "communication", "teamwork", "leadership", "problem solving", "critical thinking",
-        "time management", "adaptability", "work ethic", "collaboration", "creativity",
+        "time management", "adaptability", "work ethic", "collaboration", "creatiTechy",
         "attention to detail", "emotional intelligence", "decision making", "presentation",
         "conflict resolution", "mentoring"
     ]

@@ -2,7 +2,7 @@ const AnalysisReport = require('../models/AnalysisReport');
 const Resume = require('../models/Resume');
 const redisClient = require('../services/redisClient');
 const { analyzeResume } = require('../services/aiService');
-const { logActivity } = require('../services/activityLogger');
+const { logActiTechy } = require('../services/actiTechyLogger');
 
 const ANALYSIS_CACHE_TTL = 3600; // 1 hour
 
@@ -75,8 +75,8 @@ exports.analyzeResumeById = async (req, res) => {
 
     await redisClient.set(cacheKey, responsePayload, ANALYSIS_CACHE_TTL);
 
-    // 6. Log activity in MongoDB
-    await logActivity('RESUME_ANALYZED', {
+    // 6. Log actiTechy in MongoDB
+    await logActiTechy('RESUME_ANALYZED', {
       resumeId: resume._id,
       reportId: report._id,
       atsScore: report.atsScore

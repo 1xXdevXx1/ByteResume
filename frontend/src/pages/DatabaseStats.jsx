@@ -8,7 +8,7 @@ import {
   getAtsStats,
   getMissingSkillsStats,
   getJobMatchStats,
-  getActivityStats
+  getActiTechyStats
 } from '../services/api';
 import { 
   Database, 
@@ -22,7 +22,7 @@ import {
   CheckCircle,
   FileCode,
   Terminal,
-  Activity,
+  ActiTechy,
   Cpu
 } from 'lucide-react';
 
@@ -81,7 +81,7 @@ export default function DatabaseStats() {
       if (type === 'ats') res = await getAtsStats();
       else if (type === 'missing') res = await getMissingSkillsStats();
       else if (type === 'matches') res = await getJobMatchStats();
-      else if (type === 'activity') res = await getActivityStats();
+      else if (type === 'actiTechy') res = await getActiTechyStats();
 
       setAggResults(prev => ({ ...prev, [type]: res.data }));
     } catch (err) {
@@ -113,10 +113,10 @@ export default function DatabaseStats() {
             </span>
           </div>
           <h2 style={{ fontSize: '28px', fontWeight: '800', color: '#fff', letterSpacing: '-0.6px' }}>
-            Database & Viva Verification Suite
+            Database & Evaluation Verification Suite
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '4px' }}>
-            Interactive demonstration dashboard for Review 2: MongoDB collections, B-tree indexes, aggregation pipelines, and Redis cache.
+            Interactive demonstration dashboard for Production Architecture: MongoDB collections, B-tree indexes, aggregation pipelines, and Redis cache.
           </p>
         </div>
 
@@ -228,24 +228,24 @@ export default function DatabaseStats() {
             </pre>
           </div>
 
-          {/* Pipeline 4: Activity Audit Counts */}
+          {/* Pipeline 4: ActiTechy Audit Counts */}
           <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '10px' }}>
               <div>
                 <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>
-                  Pipeline 4: Audit Activity Counts by Action
+                  Pipeline 4: Audit ActiTechy Counts by Action
                 </h3>
                 <span style={{ fontSize: '12.5px', color: 'var(--text-muted)' }}>
                   Stages: <code style={{ color: '#818CF8' }}>$group: {`{ _id: "$action", count: { $sum: 1 } }`}</code> → <code style={{ color: '#818CF8' }}>$sort</code>
                 </span>
               </div>
-              <button className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '13px' }} onClick={() => runAggregation('activity')}>
+              <button className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '13px' }} onClick={() => runAggregation('actiTechy')}>
                 <Play size={14} />
                 <span>Execute in MongoDB</span>
               </button>
             </div>
             <pre className="code-block">
-              {JSON.stringify(aggResults['activity'] || { note: 'Click "Execute in MongoDB" to run pipeline live' }, null, 2)}
+              {JSON.stringify(aggResults['actiTechy'] || { note: 'Click "Execute in MongoDB" to run pipeline live' }, null, 2)}
             </pre>
           </div>
         </div>
@@ -256,7 +256,7 @@ export default function DatabaseStats() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
           <div className="card" style={{ borderLeft: '4px solid #10B981', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(17, 23, 38, 0.8) 100%)' }}>
             <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#fff', marginBottom: '6px' }}>
-              MongoDB Indexing Demonstration (Review 2 Viva Requirement)
+              MongoDB Indexing Demonstration (Production Architecture Evaluation Requirement)
             </h3>
             <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)' }}>
               The output below is retrieved live by executing <code style={{ color: '#34D399' }}>db.collection.getIndexes()</code> across all 6 collections, verifying index existence, key structure, and engineering defense rationale.
@@ -283,7 +283,7 @@ export default function DatabaseStats() {
                       <th>Index Name</th>
                       <th>Key Specification</th>
                       <th>Unique Constraint</th>
-                      <th>Viva Defense / Engineering Purpose</th>
+                      <th>Evaluation Defense / Engineering Purpose</th>
                     </tr>
                   </thead>
                   <tbody>

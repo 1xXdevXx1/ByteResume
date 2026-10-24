@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 
 export default function Navbar({ activeTab, setActiveTab }) {
-  const navItems = [
+  const naVitems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'upload', label: 'Upload Resume', icon: UploadCloud },
     { id: 'analysis', label: 'ATS Analysis', icon: Sparkles },
@@ -85,7 +85,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
         <div style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.8px', color: 'var(--text-muted)', padding: '0 12px 6px 12px' }}>
           Platform
         </div>
-        {navItems.map((item) => {
+        {naVitems.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
           return (
@@ -162,11 +162,11 @@ export default function Navbar({ activeTab, setActiveTab }) {
         background: 'rgba(0,0,0,0.15)'
       }}>
         <div style={{ fontWeight: '700', color: 'var(--text-secondary)', marginBottom: '2px' }}>
-          BCSE406L • NoSQL Database
+          NoSQL Database Architecture
         </div>
-        <div>VIT Vellore • Review 2</div>
+        <div>Production Engineering • Production Architecture</div>
         <div style={{ marginTop: '4px', color: '#64748B', fontSize: '10.5px' }}>
-          Team ByteResume (Devesh & Vineet)
+          Team ByteResume (Engineering Team)
         </div>
       </div>
     </aside>

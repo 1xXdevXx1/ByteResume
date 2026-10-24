@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Resume = require('../models/Resume');
 const AnalysisReport = require('../models/AnalysisReport');
-const { logActivity } = require('../services/activityLogger');
+const { logActiTechy } = require('../services/actiTechyLogger');
 
 // CREATE User
 exports.createUser = async (req, res) => {
@@ -22,7 +22,7 @@ exports.createUser = async (req, res) => {
     });
     await user.save();
 
-    await logActivity('USER_CREATED', { userId: user._id, name: user.name, email: user.email }, user._id);
+    await logActiTechy('USER_CREATED', { userId: user._id, name: user.name, email: user.email }, user._id);
     return res.status(201).json(user);
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -69,7 +69,7 @@ exports.updateUser = async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    await logActivity('USER_UPDATED', { userId: user._id, updates }, user._id);
+    await logActiTechy('USER_UPDATED', { userId: user._id, updates }, user._id);
     return res.status(200).json(user);
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -88,7 +88,7 @@ exports.deleteUser = async (req, res) => {
     await Resume.deleteMany({ userId: user._id });
     await AnalysisReport.deleteMany({ userId: user._id });
 
-    await logActivity('USER_DELETED', { userId: user._id, email: user.email }, user._id);
+    await logActiTechy('USER_DELETED', { userId: user._id, email: user.email }, user._id);
     return res.status(200).json({ message: 'User and associated records deleted successfully', userId: user._id });
   } catch (err) {
     return res.status(500).json({ error: err.message });
