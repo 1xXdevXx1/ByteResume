@@ -2,7 +2,7 @@
  * Database Index Verification & Creation Script
  * NoSQL Database Architecture (Production Engineering)
  * Creates and inspects B-tree and text indexes across all 6 MongoDB collections.
- * Demonstrates db.collection.getIndexes() with evaluation explanations.
+ * Demonstrates db.collection.getIndexes() with technical explanations.
  */
 
 const path = require('path');
@@ -164,7 +164,7 @@ async function setupIndexes() {
       console.log(`Active Indexes in db.${item.collection}.getIndexes():`);
       console.dir(existingIndexes, { depth: null, colors: true });
 
-      console.log('\nEngineering Rationale for Evaluation:');
+      console.log('\nEngineering Rationale & Index Specifications:');
       item.indexes.forEach((idx, i) => {
         console.log(`  [${i + 1}] Index Key: ${JSON.stringify(idx.spec)}`);
         console.log(`      Purpose:   ${idx.purpose}`);

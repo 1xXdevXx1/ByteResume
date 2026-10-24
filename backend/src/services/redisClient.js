@@ -4,7 +4,7 @@ let client = null;
 let isConnected = false;
 let stats = { hits: 0, misses: 0 };
 
-// High-fidelity in-memory Redis store fallback for evaluation demo if external redis server is absent
+// High-fidelity in-memory Redis store fallback for local standalone operation if external redis server is absent
 const memoryStore = new Map();
 const memoryExpiry = new Map();
 
